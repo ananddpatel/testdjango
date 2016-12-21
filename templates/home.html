@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+
+<style>
+{% block style %}
+
+{% endblock %}	
+</style>
+
+{% block jumbotron %}
+
+{% if request.user.is_authenticated %}
+<h2 align="center">Welcome {{ request.user }}!</h2>
+	{% if queryset %}
+		<table class="table table-bordered">
+			<thead>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Time</th>
+			</thead>
+			<tbody>
+				{% for item in queryset %}
+				<tr>
+				<td>{{ item.full_name }}</td>
+				<td>{{ item.email }}</td>
+				<td>{{ item.timestamp }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% endif %}
+
+
+{% else %}
+<div class="jumbotron" style="background-color: white; color: red;">
+<div class="container">
+<div class="row">
+<div class="col-sm-6">
+    <h1>Toronto Raptors</h1>
+    <p class="lead">The Toronto Raptors are a Canadian professional basketball team based in Toronto, Ontario. The Raptors compete in the National Basketball Association, as a member club of the league's Eastern Conference Atlantic Division</p>
+      <a class="btn btn-lg btn-danger" href="/signup" role="button">Signup &raquo;</a>
+      <a class="btn btn-lg btn-default" href="/eer" role="button">EER &raquo;</a>
+      <a class="btn btn-lg btn-danger" href="/contact" role="button">Contact &raquo;</a>
+    </p>
+</div>
+<div class="col-sm-6">
+	<iframe width="560" height="370" src="https://www.youtube.com/embed/AAX_LUHNyZw" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row">
+
+	<div class="col-sm-4">
+		<p class="lead" align="center">Kyle Lowry &nbsp<i class="fa fa-bolt fa-lg" aria-hidden="false"></i>
+		</p>
+		<img src="{% static 'img/lowry.jpg' %}" class="img-responsive">
+	</div>
+	<div class="col-sm-4">
+		<p class="lead" align="center">DeMar DeRozan &nbsp<i class="fa fa-grav -fa-lg" aria-hidden="true"></i>
+		</p>
+		<img src="{% static 'img/derozan.jpg' %}" class="img-responsive">
+	</div>
+	<div class="col-sm-4">
+		<p class="lead" align="center">Norman Powell &nbsp<i class="fa fa-cog fa-spin fa-lg fa-fw" aria-hidden="true"></i>
+		</p>
+		<img src="{% static 'img/powell.jpg' %}" class="img-responsive">
+	</div>
+	
+</div>
+{% endif %}
+{% endblock %}
+
